@@ -3,10 +3,9 @@ import { ListNoteController } from "./ListNoteController";
 import { ListNoteUseCase } from "./ListNoteUseCase";
 
 
+const notesRepoistory = NotesRepository.getInstance(); 
 
-const notesRepository = NotesRepository.getInstance();
-
-const listNoteUseCase = new ListNoteUseCase(notesRepository);
+const listNoteUseCase = new ListNoteUseCase(notesRepoistory);
 
 const listNoteController = new ListNoteController(listNoteUseCase);
 

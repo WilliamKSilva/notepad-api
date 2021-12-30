@@ -1,11 +1,12 @@
-import { Note } from "../../model/Note";
 import { INoteRepository } from "../../repositories/INoteRepository";
 
 class ListNoteUseCase {
-    constructor(private noteRepository: INoteRepository) {}
+    constructor(private notesRepoistory: INoteRepository) {}
+    
+    execute(id: string): void {
+        const note = this.notesRepoistory.findById(id)
 
-    execute(): Note {
-        
+        return note;
     }
 }
 

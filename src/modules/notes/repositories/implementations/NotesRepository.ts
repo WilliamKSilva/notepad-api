@@ -1,4 +1,4 @@
-import { response } from "express";
+import { request, response } from "express";
 import { Note } from "../../model/Note";
 
 import { ICreateNoteDTO, INoteRepository } from "../INoteRepository";
@@ -28,22 +28,22 @@ class NotesRepository implements INoteRepository {
             created_at: new Date()
         })
 
-        this.notes.push(note)
+        this.notes.push(note)        
     }
 
-    findById(id: string): Note {
+    findById(id: string) {
         const note = this.notes.find(note => note.id === id)
         
         if(note === undefined) {
             response.json({message: "Must be a valid Id!"})
         }
 
-        return note!;
-    }
-
-    list(id: string): Note[] {        
+        return note;
+    }     
+    
+    listAll(): Note[] {
         return this.notes;
-    }    
+    }
 }
 
 export { NotesRepository }

@@ -1,3 +1,4 @@
+import { response } from 'express';
 import { INoteRepository } from '../../repositories/INoteRepository'
 
 interface IRequest {
@@ -9,7 +10,7 @@ class CreateNoteUseCase {
     constructor(private notesRepository: INoteRepository) {}
 
     execute({name, content}: IRequest): void {
-        this.notesRepository.create({name, content})
+        this.notesRepository.create({name, content})        
     }
 }
 

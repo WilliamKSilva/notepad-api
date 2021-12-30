@@ -1,14 +1,15 @@
 import { Note } from "../model/Note";
 
-interface ICreateNoteDTO {
+export interface ICreateNoteDTO {
     name: string;
     content: string;
 }
 
 interface INoteRepository {
     create({name, content}: ICreateNoteDTO): void;
-
+    findById(id: string): void;
+    listAll(): Note[];    
 }
 
 
-export { ICreateNoteDTO, INoteRepository };
+export { INoteRepository };
