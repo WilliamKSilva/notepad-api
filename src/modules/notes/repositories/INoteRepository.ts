@@ -6,6 +6,7 @@ interface ICreateNoteDTO {
 }
 
 interface INoteRepository {
+    create({name, content}: ICreateNoteDTO): void;
 
 }
 
