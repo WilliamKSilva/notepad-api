@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  app: 
+    build: .
+    container_name: notepad-api
+    ports: 
+      - 2000:2000
+    volumes:
+      - .:/usr/app
