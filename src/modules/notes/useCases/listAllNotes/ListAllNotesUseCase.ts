@@ -5,7 +5,7 @@ import { INoteRepository } from "../../repositories/INoteRepository";
 class ListAllNotesUseCase {
     constructor(private notesRepository: INoteRepository) {}
 
-    execute(): Note[] {
+    execute(): Promise<Note[]> {
         const notes = this.notesRepository.listAll();
 
         return notes;
