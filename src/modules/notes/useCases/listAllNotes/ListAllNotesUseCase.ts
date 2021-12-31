@@ -1,4 +1,4 @@
-import { Note } from "../../model/Note";
+import { Note } from "../../entities/Note";
 import { INoteRepository } from "../../repositories/INoteRepository";
 
 

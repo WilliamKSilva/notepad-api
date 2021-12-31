@@ -5,10 +5,10 @@ import { CreateNoteUseCase } from "./CreateNoteUseCase";
 class CreateNoteController {
     constructor(private createNoteUseCase: CreateNoteUseCase) {}
 
-    handle(request: Request, response: Response): Response {
+    async handle(request: Request, response: Response): Promise<Response> {
         const { name, content } = request.body;
 
-        this.createNoteUseCase.execute({name, content})
+        await this.createNoteUseCase.execute({name, content})
 
         return response.status(201).send();
     }

@@ -2,11 +2,12 @@ import { NotesRepository } from "../../repositories/implementations/NotesReposit
 import { ListAllNotesController } from "./ListAllNotesController";
 import { ListAllNotesUseCase } from "./ListAllNotesUseCase";
 
+export default(): ListAllNotesController => {
+    const notesRepoistory = new NotesRepository();
 
-const notesRepoistory = NotesRepository.getInstance();
+    const listAllNotesUseCase = new ListAllNotesUseCase(notesRepoistory);
 
-const listAllNotesUseCase = new ListAllNotesUseCase(notesRepoistory);
+    const listAllNotesController = new ListAllNotesController(listAllNotesUseCase);
 
-const listAllNotesController = new ListAllNotesController(listAllNotesUseCase);
-
-export { listAllNotesController }
+    return listAllNotesController;
+}

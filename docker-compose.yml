@@ -20,6 +20,10 @@ services:
       - 2000:2000
     volumes:
       - .:/usr/app 
+    links: 
+      - database_notepad
+    depends_on:
+      - database_notepad
 volumes:
   pgdata:
     driver: local

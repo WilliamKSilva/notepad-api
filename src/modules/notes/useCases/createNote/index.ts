@@ -3,10 +3,13 @@ import { CreateNoteController } from "./CreateNoteController";
 import { CreateNoteUseCase } from "./CreateNoteUseCase";
 
 
-const notesRepository = NotesRepository.getInstance();
+export default(): CreateNoteController => {
 
-const createNoteUseCase = new CreateNoteUseCase(notesRepository);
+    const notesRepository = new NotesRepository();
 
-const createNoteController = new CreateNoteController(createNoteUseCase);
+    const createNoteUseCase = new CreateNoteUseCase(notesRepository);
 
-export { createNoteController }
+    const createNoteController = new CreateNoteController(createNoteUseCase);
+
+    return createNoteController;
+};

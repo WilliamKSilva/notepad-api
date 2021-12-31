@@ -9,7 +9,7 @@ interface IRequest {
 class CreateNoteUseCase {
     constructor(private notesRepository: INoteRepository) {}
 
-    execute({name, content}: IRequest): void {
+    async execute({name, content}: IRequest): Promise<void> {
         this.notesRepository.create({name, content})        
     }
 }

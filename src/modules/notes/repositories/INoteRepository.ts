@@ -1,4 +1,4 @@
-import { Note } from "../model/Note";
+import { Note } from "../entities/Note";
 
 export interface ICreateNoteDTO {
     name: string;
@@ -6,9 +6,9 @@ export interface ICreateNoteDTO {
 }
 
 interface INoteRepository {
-    create({name, content}: ICreateNoteDTO): void;
-    findById(id: string): void;
-    listAll(): Note[];    
+    create({name, content}: ICreateNoteDTO): Promise<void>;
+    findById(id: string): Promise<Note>;
+    listAll(): Promise<Note[]>;    
 }
 
 
