@@ -5,9 +5,9 @@ interface IOptions {
 }
 
 getConnectionOptions().then(options => {
-    const newOptions = options as IOptions;
+    const newOptions = options as IOptions;    
     newOptions.host = 'database_notepad'; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
     createConnection({
-      ...options,
+      ...options,      
     });
   });

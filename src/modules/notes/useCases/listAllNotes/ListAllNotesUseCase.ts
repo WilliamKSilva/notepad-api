@@ -1,12 +1,15 @@
+import { inject, injectable } from "tsyringe";
 import { Note } from "../../entities/Note";
 import { INoteRepository } from "../../repositories/INoteRepository";
 
-
+@injectable()
 class ListAllNotesUseCase {
-    constructor(private notesRepository: INoteRepository) {}
+    constructor(
+        @inject("NotesRepository")
+        private notesRepository: INoteRepository) {}
 
-    execute(): Promise<Note[]> {
-        const notes = this.notesRepository.listAll();
+    async execute(): Promise<Note[]> {
+        const notes = await this.notesRepository.listAll();
 
         return notes;
     }

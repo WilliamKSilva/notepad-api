@@ -1,21 +1,20 @@
 import { Router } from "express";
 
 import { CreateNoteController } from "../modules/notes/useCases/createNote/CreateNoteController";
-import listAllNotesController from "../modules/notes/useCases/listAllNotes";
-import listNoteController from "../modules/notes/useCases/listNote";
+import { ListAllNotesController } from "../modules/notes/useCases/listAllNotes/ListAllNotesController";
+import { ListNoteController } from "../modules/notes/useCases/listNote/ListNoteController";
+
 
 const notesRoutes = Router();
 
-const createNoteController = new CreateNoteController
+const createNoteController = new CreateNoteController;
+const listAllNotesController = new ListAllNotesController;
+const listNoteController = new ListNoteController;
 
 notesRoutes.post("/", createNoteController.handle);
 
-notesRoutes.get("/", (request, response) => {
-    return listAllNotesController().handle(request, response)
-})
+notesRoutes.get("/", listAllNotesController.handle)
 
-notesRoutes.get("/:id", (request, response) => {
-    return listNoteController().handle(request, response)
-})
+notesRoutes.get("/:id", listNoteController.handle)
 
 export { notesRoutes }

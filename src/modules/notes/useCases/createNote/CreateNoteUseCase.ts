@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import { response } from 'express';
 import { INoteRepository } from '../../repositories/INoteRepository'
 
 interface IRequest {
@@ -13,7 +12,7 @@ class CreateNoteUseCase {
         private notesRepository: INoteRepository) {}
 
     async execute({name, content}: IRequest): Promise<void> {
-        this.notesRepository.create({name, content})        
+        await this.notesRepository.create({name, content})        
     }
 }
 

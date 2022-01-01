@@ -10,7 +10,7 @@ class CreateNoteController {
         
         const createNoteUseCase = container.resolve(CreateNoteUseCase)
 
-        await createNoteUseCase.execute({name, content})
+        createNoteUseCase.execute({name, content})
 
         return response.status(201).send();
     }

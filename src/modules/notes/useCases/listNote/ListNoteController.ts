@@ -1,12 +1,14 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { ListNoteUseCase } from "./ListNoteUseCase";
 
 
 class ListNoteController {
-    constructor(private listNoteUseCase: ListNoteUseCase) {}
 
-    handle(request: Request, response: Response) {
-        const note = this.listNoteUseCase.execute(request.params.id)
+    async handle(request: Request, response: Response) {
+        const listNoteUseCase = container.resolve(ListNoteUseCase)
+        
+        const note = listNoteUseCase.execute(request.params.id)
 
         return response.json(note);
     }
