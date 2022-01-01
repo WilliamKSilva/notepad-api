@@ -9,7 +9,7 @@ class UsersRepository implements IUsersRepository {
 
     constructor() {
         this.repository = getRepository(User);
-    }
+    }        
 
     async create({name, email, password}: ICreateUserDTO): Promise<void> {
         const user = this.repository.create({
@@ -20,6 +20,13 @@ class UsersRepository implements IUsersRepository {
 
         await this.repository.save(user);
     }
+
+    async findByEmail(email: string): Promise<User> {
+        const emailInUse = await this.repository.findOne({email});        
+
+        return emailInUse!;       
+    }
+    
     
 }
 
