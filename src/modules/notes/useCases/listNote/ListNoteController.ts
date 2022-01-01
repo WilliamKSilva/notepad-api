@@ -5,10 +5,12 @@ import { ListNoteUseCase } from "./ListNoteUseCase";
 
 class ListNoteController {
 
-    async handle(request: Request, response: Response) {
+    async handle(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params
+
         const listNoteUseCase = container.resolve(ListNoteUseCase)
         
-        const note = listNoteUseCase.execute(request.params.id)
+        const note = await listNoteUseCase.execute(id)
 
         return response.json(note);
     }

@@ -21,7 +21,7 @@ class NotesRepository implements INoteRepository {
         await this.repository.save(note)     
     }
 
-    async findById(id: string) {
+    async findById(id: string): Promise<Note> {
         const note = await this.repository.findOne({id});
         
         if(note === undefined) {
