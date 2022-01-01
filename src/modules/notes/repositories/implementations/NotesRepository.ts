@@ -1,5 +1,6 @@
 import { response } from "express";
 import { getRepository, Repository } from "typeorm";
+import { AppError } from "../../../../errors/AppError";
 import { Note } from "../../entities/Note";
 
 import { ICreateNoteDTO, INoteRepository } from "../INoteRepository";
@@ -25,7 +26,7 @@ class NotesRepository implements INoteRepository {
         const note = await this.repository.findOne({id});
         
         if(note === undefined) {
-            response.json({message: "Must be a valid Id!"})
+            throw new AppError("Invalid Id!")
         }
 
         return note!;
