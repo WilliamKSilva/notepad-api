@@ -2,7 +2,7 @@ import { Note } from "../entities/Note";
 
 export interface ICreateNoteDTO {
     name: string;
-    content: string;
+    content: string;    
 }
 
 interface INoteRepository {

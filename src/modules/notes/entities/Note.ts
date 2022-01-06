@@ -4,7 +4,10 @@ import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 @Entity("notes")
 class Note {
     @PrimaryColumn()
-    id?: string;
+    id?: string;  
+    
+    @Column()
+    user_id: string;
 
     @Column()
     name: string;
