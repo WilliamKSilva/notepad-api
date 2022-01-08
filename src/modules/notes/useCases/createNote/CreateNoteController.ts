@@ -4,13 +4,16 @@ import { container } from 'tsyringe';
 
 
 class CreateNoteController {   
-
     async handle(request: Request, response: Response): Promise<Response> {
+        const token = request.headers.authorization;
+        const [, user_token] = token!.split(" ");
         const { name, content } = request.body;
-        
+
+        console.log(token)
+                
         const createNoteUseCase = container.resolve(CreateNoteUseCase)
 
-        createNoteUseCase.execute({name, content})
+        await createNoteUseCase.execute({token: user_token, name, content})
 
         return response.status(201).send();
     }

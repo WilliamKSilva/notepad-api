@@ -13,23 +13,24 @@ class NotesRepository implements INoteRepository {
     }
     
 
-    async create({name, content}: ICreateNoteDTO): Promise<void> {
+    async create({name, content, user_id}: ICreateNoteDTO): Promise<void> {
         const note = this.repository.create({
             name,
             content,
+            user_id,                        
         })
 
-        await this.repository.save(note)     
+        await this.repository.save(note);        
     }
 
-    async findById(id: string): Promise<Note> {
-        const note = await this.repository.findOne({id});
+    async findNotesByUserId(user_id: string): Promise<Note[]> {
+        const notes = await this.repository.find({user_id});
         
-        if(note === undefined) {
+        if(notes === undefined) {
             throw new AppError("Invalid Id!")
         }
 
-        return note!;
+        return notes;
     }     
     
     async listAll(): Promise<Note[]> {

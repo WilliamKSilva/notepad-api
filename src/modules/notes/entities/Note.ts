@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity("notes")
 class Note {
@@ -7,7 +7,7 @@ class Note {
     id?: string;  
     
     @Column()
-    user_id: string;
+    user_id: string;    
 
     @Column()
     name: string;
